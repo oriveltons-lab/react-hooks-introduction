@@ -4,7 +4,7 @@ import CharPicker from './components/CharPicker';
 import Character from './components/Character';
 
 const App = props => {
-  useState({
+  const [state, setState] = useState({
     selectedCharacter: 1,
     side: 'light',
     destroyed: false
