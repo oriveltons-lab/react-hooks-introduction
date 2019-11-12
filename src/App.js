@@ -11,16 +11,16 @@ const App = props => {
   });
 
   const sideHandler = side => {
-    setState({ side: side });
+    setState({ ...state, side: side });
   };
 
   const charSelectHandler = event => {
     const charId = event.target.value;
-    setState({ selectedCharacter: charId });
+    setState({ ...state,  selectedCharacter: charId });
   };
 
   const destructionHandler = () => {
-    setState({ destroyed: true });
+    setState({ ...state, destroyed: true });
   };
 
   let content = (
@@ -31,17 +31,15 @@ const App = props => {
         onCharSelect={charSelectHandler}
       />
       <Character selectedChar={state.selectedCharacter} />
-      <button onClick={sideHandler.bind(this, 'light')}>
-        Light Side
-      </button>
+      <button onClick={sideHandler.bind(this, 'light')}>Light Side</button>
       <button onClick={sideHandler.bind(this, 'dark')}>Dark Side</button>
-      {state.side === 'dark' && (
+      {state.side === 'dark' && ( 
         <button onClick={destructionHandler}>DESTROY!</button>
       )}
     </React.Fragment>
   );
 
-  if (this.state.destroyed) {
+  if (state.destroyed) {
     content = <h1>Total destruction!</h1>;
   }
   return content;
